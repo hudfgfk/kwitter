@@ -45,7 +45,14 @@ function getData() { firebase.database().ref("/"+roomName).on('value', function(
  } });  }); }
 getData();
 
-
+function updateLike(messageId){
+    buttonId=messageId;
+    likes=document.getElementById(buttonId).value;
+    updatedLikes=Number(likes)+1;
+    firebase.database().ref(roomName).child(messageId).update({
+        like:updatedLikes
+    });
+}
 
 
 function logout(){
